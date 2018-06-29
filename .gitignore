@@ -30,3 +30,18 @@
 *.exe
 *.out
 *.app
+
+#additional atmel files to ignore
+*.hex
+*.elf
+*.srec
+*.eep
+*.map
+*.lss
+*.mk
+**/Debug/
+**/Release/
+*~
+*.atsln
+**/.vs/
+*.xml
