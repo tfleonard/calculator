@@ -10,6 +10,7 @@
  *	Date		Version		Comments
  *	-----		-------		--------
  *	6-19-18		0.1			Initial made from dds5
+ *	6-29-18		0.2			Changed touch functions to direct access 
  *
  */ 
 

@@ -207,6 +207,7 @@ public:
 
 
 	friend class Graphics;
+	friend class button;
 
 
 };
