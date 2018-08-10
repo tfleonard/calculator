@@ -17,7 +17,8 @@ class button: public Lcd {
 
 
 private:
-	pixpsn_t start;
+	pixpsn_t upperLeft;
+	pixpsn_t lowerRight;
 	uint16_t xlen;
 	uint16_t ylen;
 	pixColor fg;
@@ -26,7 +27,7 @@ private:
 	uint8_t mag;
 
 public:
-	button(pixpsn_t psn, pixColor f, pixColor b, char *text, uint8_t size);
+	button(pixpsn_t ul, pixpsn_t lr, pixColor f, pixColor b, char *text, uint8_t size);
 	void draw(void);
 
 };

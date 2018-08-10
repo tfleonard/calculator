@@ -16,6 +16,18 @@
 #include "graphics.h"
 #include "button.h"
 
+button::button(pixpsn_t ul, pixpsn_t lr, pixColor f, pixColor b, char *text, uint8_t size) {
+
+	upperLeft = ul;
+	lowerRight = lr;
+	fg = f;
+	bg = b;
+	title = text;
+	mag = size;
+	xlen = lr.col - ul.col+1;
+	ylen = lr.line - ul.line+1;
+
+}
 
 
 
@@ -29,10 +41,10 @@ void button::draw(void) {
 	uint8_t bufIndx;
 	uint16_t len;
 
-	ys = start.line;
-	xs = start.col;
-	ye = ys + ylen - 1;
-	xe = xs + xlen -1;
+	ys = upperLeft.line;
+	xs = upperLeft.col;
+	ye = lowerRight.line;
+	xe = lowerRight.col;
 	
 	cli();
 	
