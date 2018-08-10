@@ -57,9 +57,9 @@ void button::draw(void) {
 	bufIndx = 0;
 	//	initialize the line buffer
 	for (int i=0; i< CHAR_WIDTH; i++) {
-		buf[bufIndx++] = color.r;
-		buf[bufIndx++] = color.g;
-		buf[bufIndx++] = color.b;
+		buf[bufIndx++] = bg.r;
+		buf[bufIndx++] = bg.g;
+		buf[bufIndx++] = bg.b;
 	}
 	
 	for (uint16_t i=0; i< ylen; i++) {
