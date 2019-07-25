@@ -155,9 +155,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="button.cpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="button.h">
       <SubType>compile</SubType>
     </Compile>
@@ -192,6 +189,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd_mcuf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd_mcuf.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="led.cpp">

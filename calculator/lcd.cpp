@@ -66,7 +66,9 @@ Lcd::Lcd(void) {
   Clock::delay(12);
 	on();	
   Clock::delay(12);
-  set_display_brightness(0xff); 
+//  set_display_brightness(0xff); 
+  set_display_brightness(0x20);
+
   Clock::delay(12); 
  	clrScrn();
 	lcdInitialized = 1;
@@ -178,7 +180,7 @@ void Lcd::pump_reg(void) {
 void Lcd::set_display_brightness(uint8_t level) {
   uint8_t buf = level;
   cli();
-#if 0
+#if 1
   sendCmd(0x53);  // CTRL DIsplay CMD
   buf = 0x20;     // enable brightness control
   sendData(&buf,1);

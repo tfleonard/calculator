@@ -11,6 +11,7 @@
  *	-----		-------		--------
  *	6-19-18		0.1			Initial made from dds5
  *	6-29-18		0.2			Changed touch functions to direct access 
+ * added MCU Friend LCD support
  *
  */ 
 
@@ -26,6 +27,7 @@
 #include "uart.h"
 #include "led.h"
 #include "lcd.h"
+#include "lcd_mcuf.h"
 #include "graphics.h"
 #include "sw.h"
 #include "ElapsedTime.h"
@@ -43,7 +45,11 @@ int main(void) {
 Clock *cl = new Clock();
 
 Led *led = new Led();
+#ifdef LCD_MCU_FRND
+Lcd_mcuf *l = new Lcd_mcuf();
+#else
 Lcd *l = new Lcd();
+#endif
 Graphics *g = new Graphics();
 
 int pass = 0;

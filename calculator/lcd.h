@@ -23,12 +23,20 @@
 //#define LCD_18	1		// new LCD display to UNO test bed (Red)
 //#define LCD_TT	1		// transistor tester PINS
 //#define LCD_TB	1		// tt lcd to UNO test bed
+//#define LCD_24	1		// First 2.4 lcd
+#define LCD_MCU_FRND	1		// second type of 2.4 lcd
 
+#if 0
 #define XMIN  79
 #define XMAX  828
 #define YMIN  117
 #define YMAX  817
-
+#else
+#define XMIN  121
+#define XMAX  911
+#define YMIN  128
+#define YMAX  892
+#endif
 //
 // uncomment the next line to flip the display
 //
@@ -95,19 +103,20 @@
 #define LCD_DFLT	(LCD_nRST | LCD_nCS)  // nRST and nCS high
 
 // 2.4 lcd shield  IL9341, 8 bit parallel
-#else
-#define LCD_nRST	(1 << 4)		// PC4
-#define LCD_nCS		(1 << 3)		// PC3
-#define LCD_A0		(1 << 2)		// PC2
-#define LCD_nWR		(1 << 1)		// PC1
-#define LCD_nRD		(1 << 0)		// PC0
+#else 
+#define LCD_nRST	(1 << 4)		// PC4 A4
+#define LCD_nCS		(1 << 3)		// PC3 A3
+#define LCD_A0		(1 << 2)		// PC2 A2
+#define LCD_nWR		(1 << 1)		// PC1 A1 
+#define LCD_nRD		(1 << 0)		// PC0 A0
 #define LCD_DDRC	(0x1F)			// PC0-PC4 outputs
 // data bus is pd7-pd2,pb1,pb0
-#define LCD_DDRB	( (1 << PB0) | (1 << PB1))		// PB0, PB1 outputs
-#define LCD_DDRD	(0xfc)												// PD2-PD7 outputs
+#define LCD_DDRB	( (1 << PB0) | (1 << PB1))		// PB0, PB1 outputs  D8,D9
+#define LCD_DDRD	(0xfc)												// PD2-PD7 outputs   D2-D7
 
 #define LCD_DFLT	(LCD_nRST | LCD_nCS | LCD_nWR | LCD_nRD)  // nRST and nCS high, rd, wr low
 
+#ifndef LCD_MCU_FRND
 
 //
 // touch screen shares these pins with lcd: 
@@ -122,8 +131,35 @@
 #define YY2 9   //
 #define XX2 8   //
 
-#define Y1A	PC3
-#define X1A PC2
+#define Y1A	PC3 // A3
+#define X1A PC2 // A2
+
+#else
+
+// MCU FRIEND LCD touch uses different pins
+// and requires different row/col swap
+//
+#undef LCD_MEM_CTL
+#define LCD_MEM_CTL (FLAG_RGB_BGR | FLAG_MV_REV | FLAG_MY_REV )
+
+#define TOUCH_00 1		// touch 0,0 is upper left corner
+//
+// touch screen shares these pins with lcd:
+#define X2 (1 << PD6)	//	X2	-	PD6		D6
+#define Y2 (1 << PD7)	//  Y2	-	PD7		D7
+#define X1 (1 << PC2)	//	X1	-	PC2		A2, digital out, analog in
+#define Y1 (1 << PC1)	//	Y1	-	PC1		A1, digital out, analog in
+
+// Touchscreen connection:
+#define YY1 A1  // need two analog inputs
+#define XX1 A2  //
+#define YY2 7   //
+#define XX2 6   //
+
+#define Y1A	PC1 // A1
+#define X1A PC2 // A2
+
+#endif
 
 // ADMUX defines
 #define ADCREF	(0x1 << 6)			// AREF pin
@@ -207,7 +243,6 @@ public:
 
 
 	friend class Graphics;
-	friend class button;
 
 
 };
